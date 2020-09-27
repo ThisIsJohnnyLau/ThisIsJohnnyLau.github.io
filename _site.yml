@@ -1,10 +1,9 @@
-name: "ThisIsJohnnyLau.github.io"
+name: "my-website"
+output_dir: "."
 navbar:
-  title: "Menu"
+  title: "My Website"
   left:
+    - text: "Home"
+      href: index.html
     - text: "About"
       href: about.html
-    - text: "Index"
-      href: index.html
-    #- text: "Projects"
-    #  href: projects.html

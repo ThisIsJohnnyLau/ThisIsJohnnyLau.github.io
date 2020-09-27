@@ -1,8 +1,5 @@
 ---
-title: "Coding work examples"
+title: "My Website"
 ---
 
-
-Task 1
-Task 2
-Task 3
+Hello, Website!

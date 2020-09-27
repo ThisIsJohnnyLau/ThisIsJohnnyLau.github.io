@@ -1,5 +1,12 @@
 ---
-title: "About This Website"
+title: "About"
 ---
 
-More about this website.
+**Bio:**
+
+I am Jonathan Lau; a CFA® charterholder looking to combine investment experience with freshly honed data analysis skills. Studying the intensive computer programming course at CodeClan allowed me to expand my investor toolkit, enhance my data-led communication skills and develop new ways of working; including adapting to lockdown. As a proud member of the Scottish Tech Army, I am currently contributing my skills to a COVID-19 data visualisation project for Scotland.
+
+
+**Projects:**
+
+This is my website with examples of my coding work.  More to follow...

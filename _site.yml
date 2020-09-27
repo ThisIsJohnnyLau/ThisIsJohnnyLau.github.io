@@ -1,0 +1,10 @@
+name: "This Is Johnny Lau"
+navbar:
+  title: "Menu"
+  left:
+    - text: "About"
+      href: about.html
+    - text: "Index"
+      href: index.html
+    #- text: "Projects"
+    #  href: projects.html

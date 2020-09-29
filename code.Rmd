@@ -1,7 +1,8 @@
 ---
 title: "Programming work examples"
 ---
-[link](www.rstudio.com)
+
+
 
 
 ### Scottish Tech Army COVID-19 dashboard

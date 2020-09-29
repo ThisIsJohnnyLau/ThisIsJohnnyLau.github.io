@@ -2,9 +2,6 @@
 title: "Programming work examples"
 ---
 
-
-
-
 ### Scottish Tech Army COVID-19 dashboard
 [Dashboard](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)
 

@@ -6,7 +6,7 @@ output:
     self_contained: no  
     theme: flatly   
 navbar:  
-  title: "ThisIsJohnnyLau"
+  title: "ThisIsJohnnyLau....."
   left:
     - text: Home
       href: index.html

@@ -1,9 +1,18 @@
-name: "my-website"
-output_dir: "."
-navbar:
-  title: "My Website"
+name: "ThisIsJohnnyLau"  
+author: "Jonathan Lau, CFA"  
+output_dir: "docs"  
+output:  
+  html_document:  
+    self_contained: no  
+    theme: flatly   
+navbar:  
+  title: "Home"
   left:
-    - text: "Home"
+    - text: Home
       href: index.html
-    - text: "About"
+    - text: Contact
+      href: contact.html
+    - text: About
       href: about.html
+    - text: Code
+      href: code.html

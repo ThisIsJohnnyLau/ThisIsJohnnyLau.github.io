@@ -10,9 +10,13 @@ navbar:
   left:
     - text: Home
       href: index.html
-    - text: Contact
-      href: contact.html
     - text: About
       href: about.html
-    - text: Code
+    - text: Data analysis
       href: code.html
+    - text: Invest analysis
+      href: code.html
+    - text: Media
+      href: media.html
+    - text: Contact
+      href: contact.html

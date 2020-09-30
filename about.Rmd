@@ -2,5 +2,8 @@
 title: "About This Website"
 ---
 
+This is my first personal website which I am using to showcase my programming skills.  I have a couple more planned to host other content.  I will put links up in due course.
 
-Elli smells real real bad
+My name is Johnny Lau and I live in Edinburgh.  I am a CFA charterholder getting stuck into the data analysis world.
+
+I come from a family of restauranteurs but much prefer being 'this side of the table'. 

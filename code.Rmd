@@ -26,7 +26,7 @@ This is the current dadshboard - an amalgamation of all three projects.
 ## Business Intelligence Dashboard
 Group project using Shiny to fulfil client brief through data analysis, business awareness and user-centered design  
   
-  [[Files]](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
+  [[Files]](https://github.com/ThisIsJohnnyLau/shiny_dashboard_project)
 &nbsp;
 [[Dashboard]](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
 
@@ -35,7 +35,9 @@ Group project using Shiny to fulfil client brief through data analysis, business
 
 
 ## Deloitte Business Analysis Project
-Project focussing on client requirements, concept feasibility, presentation and consolidation of curriculum  
+Project focussing on client requirements, concept feasibility, presentation and consolidation of curriculum.
+
+>“Productivity is commonly defined as a ratio between the output volume and the volume of inputs. In other words, it measures how efficiently production inputs, such as labour and capital, are being used in an economy to produce a given level of output.” - OECD
   
   [[Files]](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
 
@@ -70,13 +72,14 @@ Unlike lawyers, accountants, medics or actuaries, there is currently no requirem
 **** 
 
 ### Dirty Data Project
-### Why are good data cleaning skills important for analysis?
+***Why are good data cleaning skills important for analysis?***  
+  
 * Estimated $3 trillion US GDP lost in 2016 - IBM
 * 1 in 3 business leaders did not trust the data sources used in decision-making
 
 > _'Garbage in leads to garbage out'_
 
-### You get to know your data:
+***You get to know your data***  
 
 * Understanding data through inital cleaning and exploration
 * Reduces the risk of incorrect assumptions
@@ -84,15 +87,17 @@ Unlike lawyers, accountants, medics or actuaries, there is currently no requirem
 * Discovery of issues such as biases in data collection
 * Opportunities to problem solve for unique datasets
 * Setup to extract additional insight
-* Setup to emphasis particular questions
+* Setup to emphasis particular questions  
+  
+***Project files and analysis***  
 
-### Project files and analysis
-
-This project centres around cleaning six dirty datasets:
+This project centres around cleaning six dirty datasets
 
 * Task 1 - Decathlon Events
 * Task 2 - Cake Ingredients
 * Task 3 - Seabirds Spottings
 * Task 4 - Sweeties Survey
 * Task 5 - Codebook
-* Task 6 - Dogs
+* Task 6 - Dogs  
+
+***

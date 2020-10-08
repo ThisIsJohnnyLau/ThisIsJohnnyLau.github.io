@@ -91,13 +91,14 @@ Unlike lawyers, accountants, medics or actuaries, there is currently no requirem
   
 ***Project files and analysis***  
 
-This project centres around cleaning six dirty datasets
+This project centres around cleaning six dirty datasets  
+[[Files]](https://github.com/ThisIsJohnnyLau/dirty_data_project)  
 
-* Task 1 - Decathlon Events
-* Task 2 - Cake Ingredients
-* Task 3 - Seabirds Spottings
-* Task 4 - Sweeties Survey
-* Task 5 - Codebook
-* Task 6 - Dogs  
+* Task 1 [[analysis]](task_1.html) - Decathlon Events
+* Task 2 [[analysis]](task_2.html) - Cake Ingredients
+* Task 3 [[analysis]](task_3.html) - Seabirds Spottings
+* Task 4 [[analysis]](task_4.html) - Sweeties Survey
+* Task 5 [[analysis]](task_5.html) - Codebook
+* Task 6 [[analysis]](task_6.html) - Dogs  
 
 ***

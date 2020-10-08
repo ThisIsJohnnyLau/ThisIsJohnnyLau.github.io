@@ -1,26 +1,98 @@
 ---
 title: "Programming work examples"
----
+---  
 
-### Scottish Tech Army COVID-19 dashboard
-[Dashboard](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)
-
-### Business intelligence dashboard
-Group project using Shiny to fulfil client brief through data analysis, business awareness and user-centered design
-[Dashboard](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
+**** 
 
 
-### Deloitte Business Analysis Project
-Project focussing on client requirements, concept feasibility, presentation and consolidation of curriculum
-[Folder](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
+## Scottish Tech Army COVID-19 dashboard
+***Original***  
+This was one of three dashboards entered for the STA Homebrew challenge.  
+[[Files]](https://github.com/ThisIsJohnnyLau/COVID-19_scottish_tech_army)
+&nbsp;
+[[Dashboard]](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)
+
+
+***Current***  
+This is the current dadshboard - an amalgamation of all three projects.  
+[[Files]](https://github.com/Scottish-Tech-Army/STACovidDashboard)
+&nbsp;
+[[Dashboard]](https://covid19.scottishtecharmy.org)
+
+**** 
+
+
+
+## Business Intelligence Dashboard
+Group project using Shiny to fulfil client brief through data analysis, business awareness and user-centered design  
+  
+  [[Files]](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
+&nbsp;
+[[Dashboard]](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
+
+**** 
+
+
+
+## Deloitte Business Analysis Project
+Project focussing on client requirements, concept feasibility, presentation and consolidation of curriculum  
+  
+  [[Files]](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
+
+**** 
+
 
 ### Whisky dashboard - find YOUR whisky
-A bit of fun - I'm a big whisky fan and want to help people pair their palette / mood with (perhaps) new distilleries!
-[Dashboard](https://thisisjohnnylau.shinyapps.io/find_your_whisky/)</br>
-[Folder](https://github.com/ThisIsJohnnyLau/whisky)
+A bit of fun - I'm a big whisky fan and want to help people pair their palette / mood with (perhaps) new distilleries - especially for those new to whisky!  
+  
+  [[Files]](https://github.com/ThisIsJohnnyLau/whisky)
+&nbsp;
+[[Dashboard]](https://thisisjohnnylau.shinyapps.io/find_your_whisky/)  
+
+
+**** 
 
 ### Ethics presentation – code of conduct in the new ‘data economy’
-[Powerpoint](https://github.com/ThisIsJohnnyLau/ethics_presentation/raw/master/Code%20of%20Conduct%20Presentation.pptx)
 
 
-[Presentation](https://github.com/ThisIsJohnnyLau/ethics_presentation)
+***Background***  
+
+On 16th March 2020, I gave a data ethics presentation to Data Analysis classmates at CodeClan, Edinburgh.
+
+***Introduction***  
+
+Unlike lawyers, accountants, medics or actuaries, there is currently no requirement for data scientists to hold any specific qualification or industry membership. There is rising awareness of the harmful power of data, and a number voluntary codes of conduct have been developed.  
+  
+[[Files]](https://github.com/ThisIsJohnnyLau/ethics_presentation)
+&nbsp;
+[[Presentation]](https://github.com/ThisIsJohnnyLau/ethics_presentation/raw/master/Code%20of%20Conduct%20Presentation.pptx)  
+
+**** 
+
+### Dirty Data Project
+### Why are good data cleaning skills important for analysis?
+* Estimated $3 trillion US GDP lost in 2016 - IBM
+* 1 in 3 business leaders did not trust the data sources used in decision-making
+
+> _'Garbage in leads to garbage out'_
+
+### You get to know your data:
+
+* Understanding data through inital cleaning and exploration
+* Reduces the risk of incorrect assumptions
+* Raises relevant questions
+* Discovery of issues such as biases in data collection
+* Opportunities to problem solve for unique datasets
+* Setup to extract additional insight
+* Setup to emphasis particular questions
+
+### Project files and analysis
+
+This project centres around cleaning six dirty datasets:
+
+* Task 1 - Decathlon Events
+* Task 2 - Cake Ingredients
+* Task 3 - Seabirds Spottings
+* Task 4 - Sweeties Survey
+* Task 5 - Codebook
+* Task 6 - Dogs

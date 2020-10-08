@@ -1,15 +1,20 @@
 ---
-title: "Contact"
+title: "Jonathan Lau, CFA"
 ---
+***
 
-## Jonathan Lau, CFA
-
-### +44 (0)7743 412132
-### jonathancylau@hotmail.com
-
-
-https://www.linkedin.com/in/jonathancylau</br>
-
-https://github.com/ThisIsJohnnyLau</br>
-
-https://twitter.com/ThisIsJohnnyLau</br>
+## Contact details
+**E-mail:** jonathancylau@hotmail.com  
+**Tel:** +44 (0)7743 412132
+  
+***  
+## Social Media
+**LinkedIn:** https://www.linkedin.com/in/jonathancylau  
+**Twitter:** https://twitter.com/ThisIsJohnnyLau
+    
+***
+  
+## Repository
+**GitHub** https://github.com/ThisIsJohnnyLau
+  
+  ***

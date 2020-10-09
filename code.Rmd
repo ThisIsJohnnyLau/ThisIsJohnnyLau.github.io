@@ -9,55 +9,67 @@ title: "Programming work examples"
   
 >In June 2020, we set the members of the Scottish Tech Army a challenge - look at the published data on the Covid-19 pandemic and come up with a way of presenting it in an interactive accessible way that would make the data more available and more usable to people across Scotland - we called it our Homebrew Challenge. **[- STA announcement](https://www.scottishtecharmy.org/blog/covid-19-dashboard-for-scotland)**
   
-***Original***  
-This was one of three dashboards entered for the STA Homebrew challenge.  
-[[Files]](https://github.com/ThisIsJohnnyLau/COVID-19_scottish_tech_army)
-&nbsp;
-[[Dashboard]](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)
-
-
 ***Current***  
-This is the current dadshboard - an amalgamation of all three projects.  
 [[Files]](https://github.com/Scottish-Tech-Army/STACovidDashboard)
 &nbsp;
 [[Dashboard]](https://covid19.scottishtecharmy.org)
+  
+This is the current dadshboard - an amalgamation of all three projects.  
+  [![STA Dashboard](pics/covid_dash.png)](https://covid19.scottishtecharmy.org)
+  
+***Original***  
+[[Files]](https://github.com/ThisIsJohnnyLau/COVID-19_scottish_tech_army)
+&nbsp;
+[[Dashboard]](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)
+  
+This was one of three dashboards entered for the STA Homebrew challenge.  
+
+
 
 **** 
 
 
 
 ## Business Intelligence Dashboard
+[[Files]](https://github.com/ThisIsJohnnyLau/shiny_dashboard_project)&nbsp; [[Dashboard]](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
+  
 Group project using Shiny to fulfil client brief through data analysis, business awareness and user-centered design  
   
-  [[Files]](https://github.com/ThisIsJohnnyLau/shiny_dashboard_project)
-&nbsp;
-[[Dashboard]](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
+  [![Web Traffic Dashboard](pics/BI_dash.png)](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
+  
 
 **** 
 
 
 
 ## Deloitte Business Analysis Project
+[[Files]](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
+  
 Project focussing on client requirements, concept feasibility, presentation and consolidation of curriculum.
 
 >“Productivity is commonly defined as a ratio between the output volume and the volume of inputs. In other words, it measures how efficiently production inputs, such as labour and capital, are being used in an economy to produce a given level of output.” - OECD
   
-  [[Files]](https://github.com/ThisIsJohnnyLau/deloitte_productivity_project)
 
 **** 
 
 
 ### Whisky dashboard - find YOUR whisky
-A bit of fun - I'm a big whisky fan and want to help people pair their palette / mood with (perhaps) new distilleries - especially for those new to whisky!  
-  
-  [[Files]](https://github.com/ThisIsJohnnyLau/whisky)
+[[Files]](https://github.com/ThisIsJohnnyLau/whisky)
 &nbsp;
 [[Dashboard]](https://thisisjohnnylau.shinyapps.io/find_your_whisky/)  
+
+A bit of fun - I'm a big whisky fan and want to help people pair their palette / mood with (perhaps) new distilleries - especially for those new to whisky!  
+  
+  [![Whisky Dashboard](pics/whisky_dash.png)](https://github.com/ThisIsJohnnyLau/whisky)
+  
 
 
 **** 
 
 ### Ethics presentation – code of conduct in the new ‘data economy’
+[[Files]](https://github.com/ThisIsJohnnyLau/ethics_presentation)
+&nbsp;
+[[Presentation]](https://github.com/ThisIsJohnnyLau/ethics_presentation/raw/master/Code%20of%20Conduct%20Presentation.pptx)  
 
 
 ***Background***  
@@ -68,13 +80,12 @@ On 16th March 2020, I gave a data ethics presentation to Data Analysis classmate
 
 Unlike lawyers, accountants, medics or actuaries, there is currently no requirement for data scientists to hold any specific qualification or industry membership. There is rising awareness of the harmful power of data, and a number voluntary codes of conduct have been developed.  
   
-[[Files]](https://github.com/ThisIsJohnnyLau/ethics_presentation)
-&nbsp;
-[[Presentation]](https://github.com/ThisIsJohnnyLau/ethics_presentation/raw/master/Code%20of%20Conduct%20Presentation.pptx)  
 
 **** 
 
 ### Dirty Data Project
+[[Files]](https://github.com/ThisIsJohnnyLau/dirty_data_project)  
+  
 ***Why are good data cleaning skills important for analysis?***  
   
 * Estimated $3 trillion US GDP lost in 2016 - IBM
@@ -92,10 +103,9 @@ Unlike lawyers, accountants, medics or actuaries, there is currently no requirem
 * Setup to extract additional insight
 * Setup to emphasis particular questions  
   
-***Project files and analysis***  
+***Project files and analysis***
 
 This project centres around cleaning six dirty datasets  
-[[Files]](https://github.com/ThisIsJohnnyLau/dirty_data_project)  
 
 * Task 1 - Decathlon Events [[analysis]](task_1.html)
 * Task 2 - Cake Ingredients [[analysis]](task_2.html)

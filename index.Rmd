@@ -1,5 +1,9 @@
 ---
 title: "Welcome!"
+output: 
+  html_document:
+    includes:
+      after_body: footer.html
 ---
 
 Here you will find data analysis and programming related content, which I will continue to add to.  This is my first personal website - so please be kind(!).

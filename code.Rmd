@@ -1,28 +1,34 @@
 ---
 title: "Programming work examples"
----  
+output: 
+  html_document:
+    includes:
+      after_body: footer.html
+--- 
 
 **** 
 
 
 ## Scottish Tech Army COVID-19 dashboard
   
->In June 2020, we set the members of the Scottish Tech Army a challenge - look at the published data on the Covid-19 pandemic and come up with a way of presenting it in an interactive accessible way that would make the data more available and more usable to people across Scotland - we called it our Homebrew Challenge. **[- STA announcement](https://www.scottishtecharmy.org/blog/covid-19-dashboard-for-scotland)**
-  
 ***Current***  
 [[Files]](https://github.com/Scottish-Tech-Army/STACovidDashboard)
 &nbsp;
-[[Dashboard]](https://covid19.scottishtecharmy.org)
+[[Dashboard]](https://covid19.scottishtecharmy.org)  
+This is the current dashboard - an amalgamation of all three projects.  
   
-This is the current dadshboard - an amalgamation of all three projects.  
+  
+  
+>In June 2020, we set the members of the Scottish Tech Army a challenge - look at the published data on the Covid-19 pandemic and come up with a way of presenting it in an interactive accessible way that would make the data more available and more usable to people across Scotland - we called it our Homebrew Challenge. **[- STA announcement](https://www.scottishtecharmy.org/blog/covid-19-dashboard-for-scotland)**
+  
+  
   [![STA Dashboard](pics/covid_dash.png)](https://covid19.scottishtecharmy.org)
   
 ***Original***  
 [[Files]](https://github.com/ThisIsJohnnyLau/COVID-19_scottish_tech_army)
 &nbsp;
-[[Dashboard]](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)
-  
-This was one of three dashboards entered for the STA Homebrew challenge.  
+[[Dashboard]](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)  
+This was one of the three dashboards entered for the initial STA Homebrew challenge.  
 
 
 
@@ -114,4 +120,3 @@ This project centres around cleaning six dirty datasets
 * Task 5 - Right Wing Authoritarianism [[analysis]](task_5.html)
 * Task 6 - Dogs [[analysis]](task_6.html)
   
-***

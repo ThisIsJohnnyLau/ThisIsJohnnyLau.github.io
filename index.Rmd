@@ -6,7 +6,9 @@ output:
       after_body: footer.html
 ---
 
-Here you will find data analysis and programming related content, which I will continue to add to.  This is my first personal website - so please be kind(!).
+***  
+  
+Here you will find data analysis and programming related content, which continue to expand.  This is my first personal website - so please be kind(!).
   
   
 I am relative newcomer but I have been absolutely bowled over by the culture of collaboration, knowledge-sharing and generosity that I have discovered in the global data analysis community.  I hope to embody that as I continue on my coding and data analysis journey.  

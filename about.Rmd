@@ -5,8 +5,10 @@ output:
     includes:
       after_body: footer.html
 ---
-
-My name is Johnny Lau and I live in Edinburgh.  I have a passion for financial markets and a keen interest in the ever expanding world of data analysis.
+  
+***  
+  
+My name is Johnny Lau and I live in Edinburgh.  I have a passion for financial markets and a keen interest in the ever expanding world of data analysis.  
   
 With a background in science and engineering, R speaks to me loudest (due to its statistics heritage) so I am keen to connect with Python enthusiasts so that we might exchange 'best ideas' and (hopefully) learn from one another.  
   

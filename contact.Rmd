@@ -5,8 +5,9 @@ output:
     includes:
       after_body: footer.html
 --- 
-***
-
+  
+***  
+  
 ## Contact details
 **E-mail:** jonathancylau@hotmail.com  
 **Tel:** +44 (0)7743 412132
@@ -21,4 +22,4 @@ output:
 ***
   
 ## Repository
-**GitHub** https://github.com/ThisIsJohnnyLau  
+**GitHub:** https://github.com/ThisIsJohnnyLau  

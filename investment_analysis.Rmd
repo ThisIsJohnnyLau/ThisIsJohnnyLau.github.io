@@ -1,0 +1,24 @@
+---
+title: "Investment analysis examples"
+output: 
+  html_document:
+    includes:
+      after_body: footer.html
+---
+
+***  
+
+# Introduction
+
+Investment analysis specific coding examples  
+  
+****  
+
+## Bond analysis
+[[Code]](bond_valuation.html)
+
+Bonds are securities issued by governments or corporations that pay interest over a fixed schedule and are the most well-known type of fixed income securities. However, like most fixed income instruments, they can trade very infrequently.  
+
+[![Bond Yield](pics/bond_yield.png)](bond_valuation.html)
+  
+Consequently, a bond's price may be a less reliable indicator of its value and analytical techniques are necessary when analyzing and valuing bonds.  

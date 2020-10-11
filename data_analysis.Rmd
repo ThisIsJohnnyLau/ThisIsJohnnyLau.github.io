@@ -1,14 +1,18 @@
 ---
-title: "Programming work examples"
+title: "Data analysis examples"
 output: 
   html_document:
     includes:
       after_body: footer.html
---- 
+---
 
-**** 
+***  
 
+# Introduction
 
+Here are a few data analysis work examples.
+  
+****     
 ## Scottish Tech Army COVID-19 dashboard
   
 ***Current***  

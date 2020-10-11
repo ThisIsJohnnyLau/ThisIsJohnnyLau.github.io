@@ -13,9 +13,9 @@ navbar:
     - text: About
       href: about.html
     - text: Data analysis
-      href: code.html
-#    - text: Invest analysis
-#      href: code.html
+      href: data_analysis.html
+    - text: Investment analysis
+      href: investment_analysis.html
 #    - text: Media
 #      href: media.html
     - text: Contact

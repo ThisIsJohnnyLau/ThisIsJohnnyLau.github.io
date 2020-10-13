@@ -2791,13 +2791,15 @@ div.tocify {
 </div>
 <div id="present-value-approaches" class="section level1">
 <h1><span class="header-section-number">2</span> Present value approaches</h1>
-<p>To have a solid understanding of how the value of the equity compares to the stock price it is important to appreciate fundamental concepts of valuation., The most important of these is the ‘time value of money’ which is used in discounted cash flow methods.</p>
+<p>To have a solid understanding of how the value of the equity compares to the stock price it is important to appreciate fundamental concepts of valuation. The most important of these is the ‘time value of money’ which is used in discounted cash flow methods.</p>
 <div id="time-value-of-money" class="section level2">
 <h2><span class="header-section-number">2.1</span> Time Value of Money</h2>
 <p>Time value money is a concept that permeates a lot of financial applications. This basic premise is “money today is worth more than money tomorrow” e.g. you would rather receive $1 today than $1 tomorrow. To forego $1 today you will have to be induced to receive more than $1 in the future. How much would it take to make you indifferent from receiving the $1 today and waiting?</p>
 <p><strong><em>Example</em></strong><br />
-* Expected 5% annual return (r) on a comparable investment, * Future value (fv) is $100</p>
-<p><strong><em>Calculations</em></strong> * Present value of $100 one year from now, * Present value of $100 two years from now,</p>
+* Expected 5% annual return (r) on a comparable investment<br />
+* Future value (fv) is $100</p>
+<p><strong><em>Calculations</em></strong> * Present value of $100 one year from now (pv_1)<br />
+* Present value of $100 two years from now (pv_2)</p>
 <pre class="r"><code># Calculate PV of $100 one year from now
 pv_1 &lt;- 100 / (1 + 5 / 100)
 pv_1 </code></pre>
@@ -2807,29 +2809,36 @@ pv_2 &lt;- 100 / (1 + 5 / 100) ^ 2
 pv_2</code></pre>
 <pre><code>## [1] 90.70295</code></pre>
 </div>
-<div id="calculate-free-cash-flow-to-equity" class="section level2">
-<h2><span class="header-section-number">2.2</span> Calculate Free Cash Flow to Equity</h2>
-<p>After-tax income differs from free cash flow to equity (FCFE) because after-tax income is an accrual accounting concept (i.e., after-tax income includes non-cash items like depreciation and amortization) and does not exclude any additional investments (i.e., capital expenditures and increases in working capital) necessary to maintain the firm’s operations and grow the firm based on its projections</p>
-<p>Given a firm’s after-tax income (after_tax_income), Depreciation/Amortization (depn_amort), capital expenditures (capex), and increases in working capital (incr_wc), calculate the free cash flow to equity</p>
+<div id="free-cash-flow-to-equity" class="section level2">
+<h2><span class="header-section-number">2.2</span> Free Cash Flow to Equity</h2>
+<p>After-tax income differs from free cash flow to equity (FCFE) because after-tax income is an accrual accounting concept (i.e., after-tax income includes non-cash items like depreciation and amortization) and does not exclude any additional investments (i.e., capital expenditures and increases in working capital) necessary to maintain the firm’s operations and grow the firm based on projections</p>
+<p><strong><em>Free cash flow to equity os calculated from:</em></strong><br />
+* After-tax income<br />
+* Depreciation/Amortization (depn_amort)<br />
+* Capital expenditures (capex)<br />
+* Increases in working capital (incr_wc)</p>
 <pre class="r"><code># Calculate FCFE
 fcfe &lt;- after_tax_income + depn_amort - capex - incr_wc
 fcfe</code></pre>
 <pre><code>## [1]  6.8  9.0 16.6 24.4 29.2</code></pre>
 <p>Free Cash Flow to Equity are the cash flows that the firm can pay out to its shareholders without affecting its operations.</p>
 </div>
-<div id="calculating-terminal-value" class="section level2">
-<h2><span class="header-section-number">2.3</span> Calculating Terminal Value</h2>
+<div id="terminal-value" class="section level2">
+<h2><span class="header-section-number">2.3</span> Terminal Value</h2>
 <p>A firm is generally thought to have an infinite life, so although our FCFE projection only goes five years we have to come up with a method that lets us estimate the value of the FCFE beyond Year 5. The value of FCFE from Year 6 into perpetuity is called the “Terminal Value” and a common approach to estimate the Terminal Value is the Perpetuity with Growth Model.</p>
-<p><strong><em>Example</em></strong>, * Growth rate (g) of 3.4%, * Cost of equity (ke) of 10.5%, * FCFE for 2021 from the prior example (fcfe_2021)</p>
+<p><strong><em>Example</em></strong><br />
+* Growth rate (g) of 3.4%<br />
+* Cost of equity (ke) of 10.5%<br />
+* FCFE for 2021 from the prior example (fcfe_2021)</p>
 <pre class="r"><code># Calculate the terminal value as of 2021
 tv_2021 &lt;- fcfe_2021 * (1 + g) / (ke - g)
 tv_2021</code></pre>
 <pre><code>## [1] 425.2507</code></pre>
 <p>This is one of the most important calculations in valuation as the terminal value makes up most of the value in a DCF.</p>
 </div>
-<div id="calculating-present-value-of-free-cash-flow-to-equity" class="section level2">
-<h2><span class="header-section-number">2.4</span> Calculating Present Value of Free Cash Flow to Equity</h2>
-<p>The previous Free Cash Flow to Equity (FCFE) projections go from 2017 to 2021 and we can discount these to the present.</p>
+<div id="present-value-of-free-cash-flow-to-equity" class="section level2">
+<h2><span class="header-section-number">2.4</span> Present Value of Free Cash Flow to Equity</h2>
+<p>The previous Free Cash Flow to Equity (FCFE) projections go from 2017 to 2021 and these can be discounted to the present.</p>
 <p><strong><em>Steps</em></strong><br />
 * Add the number of discount periods for each cash flow<br />
 * Calculate the present value factor for each cash flow<br />
@@ -2866,7 +2875,8 @@ pv_tv</code></pre>
 * Present value of the free cash flows (pv_fcfe) from 2017 to 2021<br />
 * Present value of the terminal value (pv_tv)<br />
 * Firm has a shares outstanding (shout) of 10 million shares</p>
-<p><strong><em>Steps</em></strong>, * Calculate the firm’s equity value<br />
+<p><strong><em>Steps</em></strong><br />
+* Calculate the firm’s equity value<br />
 * Calculate the firm’s equity value per share</p>
 <pre class="r"><code># Calculate Equity Value
 eq_val &lt;- sum(pv_fcfe) + pv_tv
@@ -2880,15 +2890,16 @@ eq_val_per_share</code></pre>
 </div>
 <div id="dividend-discount-model" class="section level1">
 <h1><span class="header-section-number">3</span> Dividend discount model</h1>
-<div id="analyze-revenue-trends---bar-chart" class="section level2">
-<h2><span class="header-section-number">3.1</span> Analyze Revenue Trends - Bar Chart</h2>
-<p>A quick way to check data is simply to plot it., The code below formats a bar chart to distinguish between actual revenues (hist_rev) and forecasts (rev_proj).</p>
-<p><strong><em>Steps</em></strong>, * Create amalgamated revenue object (rev_split)<br />
+<div id="analyse-revenue-trends---bar-chart" class="section level2">
+<h2><span class="header-section-number">3.1</span> Analyse Revenue Trends - Bar Chart</h2>
+<p>A quick way to check data is simply to plot it. The code below formats a bar chart to distinguish between actual revenues (hist_rev) and forecasts (rev_proj).</p>
+<p><strong><em>Steps</em></strong><br />
+* Create amalgamated revenue object (rev_split)<br />
 * Add years to the data<br />
 * Create a bar chart of the data in rev_split<br />
 * Color the bars red and blue<br />
 * Add title</p>
-<p><strong><em>In base R</em></strong>,</p>
+<p><strong><em>In base R</em></strong></p>
 <pre class="r"><code># Combine hist_rev and rev_proj
 rev_split &lt;- rbind(hist_rev, rev_proj)
 
@@ -2929,16 +2940,16 @@ rev_split %&gt;%
 <div id="projections-and-assumptions" class="section level1">
 <h1><span class="header-section-number">4</span> Projections and assumptions</h1>
 <p>Equity valuations rely on good projections and assumptions so being able to ask the right questions is key.</p>
-<div id="analyze-revenue-trends---regression" class="section level2">
-<h2><span class="header-section-number">4.1</span> Analyze Revenue Trends - Regression</h2>
-<p>Visual checks on the data are a great starting point but a slightly more sophisticated tool to determine changes in the data is regression analysis.</p>
+<div id="analyse-revenue-trends---regression" class="section level2">
+<h2><span class="header-section-number">4.1</span> Analyse Revenue Trends - Regression</h2>
+<p>Visual checks on the data are a great starting point but regression analysis is a slightly more sophisticated tool to determine changes in the data.</p>
 <p>The code below checks whether the revenue trend has shifted between the historical period and the projection period. Whilst a statistical shift is not bad in itself, it would certainly prompt further investigation to check the projection and underlying rationale.</p>
-<p>Note: A typical threshold for statistical significance is if the p-value of the trend variable is less than or equal to 0.10.</p>
+<p>Note: A typical threshold for statistical significance is a p-value of less than 0.10.</p>
 <p><strong><em>Steps</em></strong><br />
 * Create a trend variable for historical and projected revenues<br />
 * Create a trend shift variable that identifies the projection period<br />
 * Regress revenue projections (rev_proj) on the trend and shift variables, using the rev_all data<br />
-* Print the summary of reg</p>
+* Print the summary</p>
 <pre class="r"><code># Create a trend variable
 rev_all$trend &lt;- seq(1, 13, 1)
 
@@ -2974,7 +2985,8 @@ summary(reg)</code></pre>
 <h2><span class="header-section-number">4.2</span> Calculate Retention Ratio</h2>
 <p>The terminal value, as mentioned, makes up the majority of a firm’s value. As it is influenced by the perpetuity growth rate (PGR) assumption then this should also be scrutinised. Expected growth rate, sustainable growth rate and perpetuity growth rate are pretty much the same thing.</p>
 <p><strong><em>PGR should reflect economic reality</em></strong><br />
-* Cannot be greater than the projected long-term growth rate of the overall economy * Consistent with the reinvestment rate and return on equity projections during the terminal period<br />
+* Cannot be greater than the projected long-term growth rate of the overall economy<br />
+* Consistent with the reinvestment rate and return on equity projections during the terminal period<br />
 * Sustainable over the very long term by normal operations<br />
 * Demonstrates expected growth from reinvestment of earnings<br />
 The retention ratio is the amount of reinvestment divided by the after-tax income.</p>
@@ -2990,8 +3002,8 @@ retention_ratio &lt;- reinvestment / after_tax_income[5]
 retention_ratio</code></pre>
 <pre><code>## [1] 0.3240741</code></pre>
 </div>
-<div id="perpetuity-growth-rate-calculation" class="section level2">
-<h2><span class="header-section-number">4.3</span> Perpetuity Growth Rate Calculation</h2>
+<div id="perpetuity-growth-rate" class="section level2">
+<h2><span class="header-section-number">4.3</span> Perpetuity Growth Rate</h2>
 <p>The expected growth rate is calculated from the retention ratio and (expected) return on new invested capital which we assume to equal the cost of capital (ke). Firms are not expected to generate excess profits in a competitive market.</p>
 <p>In the case below, cost of capital (ke) is 10.5%.</p>
 <pre class="r"><code># Calculate expected growth rate
@@ -3008,7 +3020,8 @@ exp_growth_rate</code></pre>
 * Dividend rate (div_rate) is 5%<br />
 * Cost of preferred equity (kp) is 10%</p>
 <p><strong><em>Steps</em></strong><br />
-* Calculate the amount of preferred dividends. * Calculate the value of the preferred stock assuming no growth in preferred dividends.</p>
+* Calculate the amount of preferred dividends<br />
+* Calculate the value of the preferred stock assuming no growth in preferred dividends</p>
 <pre class="r"><code># Calculate dividend of preferred stock
 div &lt;- stated_value * div_rate
 div</code></pre>
@@ -3027,7 +3040,8 @@ pref_value</code></pre>
 * Dividend rate (div_rate) is 5%<br />
 * Cost of preferred equity (kp) is 10%</p>
 <p><strong><em>Steps</em></strong><br />
-* Calculate the Year 5 value of the stock. * Discount the Year 5 value to the present.</p>
+* Calculate the Year 5 value of the stock<br />
+* Discount the Year 5 value to the present</p>
 <pre class="r"><code># Value of Preferred if dividends start five years from now
 pref_value_yr5 &lt;- div_rate * stated_value / kp
 pref_value_yr5</code></pre>
@@ -3037,8 +3051,8 @@ pref_value &lt;- pref_value_yr5 / (1 + kp)^5
 pref_value</code></pre>
 <pre><code>## [1] 7.761517</code></pre>
 </div>
-<div id="valuation-assuming-2-stages-of-dividends" class="section level2">
-<h2><span class="header-section-number">4.6</span> Valuation Assuming 2-Stages of Dividends</h2>
+<div id="valuation-assuming-two-stages-of-dividends" class="section level2">
+<h2><span class="header-section-number">4.6</span> Valuation Assuming Two Stages of Dividends</h2>
 <p>The dividend discount model applies even when dividends are not the same every year. In the example below there is an initial growth period (stage 1) with higher dividends, and then lower dividends (in perpetuity) once the company matures (stage 2).</p>
 <p>In the 1st stage, the high dividend payments occur for a finite period of time. We can layout the cash flows for the first few years and then discount each of those annual cash flows to the present.</p>
 <p>In the 2nd stage, we use the Perpetuity with Growth formula to value the lower dividend payments into perpetuity.</p>
@@ -3052,7 +3066,7 @@ pref_value</code></pre>
 * Calculate discount factors<br />
 * Calculate present value of the dividends for Years 1 to 5<br />
 * Calculate present value of all cash flows from the 1st stage<br />
-* Add the value during 1st stage to the value of the 2nd stage</p>
+* Add the value from the 1st stage to the value of the 2nd stage</p>
 <pre class="r"><code># Preferred dividend in Years 1 to 5
 high_div &lt;- stated_value * div_rate_high
 
@@ -3090,25 +3104,9 @@ pref_value_low + pref_value_high</code></pre>
 * Calculate monthly returns for MYL and SPY using <code>Delt()</code> function<br />
 * Remove the first observation which is a missing value</p>
 <pre class="r"><code># Load libary
-library(quantmod)</code></pre>
-<pre><code>## Loading required package: xts</code></pre>
-<pre><code>## Loading required package: zoo</code></pre>
-<pre><code>## 
-## Attaching package: 'zoo'</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     as.Date, as.Date.numeric</code></pre>
-<pre><code>## 
-## Attaching package: 'xts'</code></pre>
-<pre><code>## The following objects are masked from 'package:dplyr':
-## 
-##     first, last</code></pre>
-<pre><code>## Loading required package: TTR</code></pre>
-<pre><code>## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.</code></pre>
-<pre class="r"><code># Create environment
+library(quantmod)
+
+# Create environment
 data_env &lt;- new.env()
 
 # Store symbols of interest
@@ -3116,14 +3114,6 @@ symbols &lt;- c(&quot;MYL&quot;, &quot;SPY&quot;)
 
 # Download price data specifying monthly prices
 getSymbols(symbols, env = data_env, periodicity = &quot;monthly&quot;)</code></pre>
-<pre><code>## 'getSymbols' currently uses auto.assign=TRUE by default, but will
-## use auto.assign=FALSE in 0.5-0. You will still be able to use
-## 'loadSymbols' to automatically load data. getOption(&quot;getSymbols.env&quot;)
-## and getOption(&quot;getSymbols.auto.assign&quot;) will still be checked for
-## alternate defaults.
-## 
-## This message is shown once per session and may be disabled by setting 
-## options(&quot;getSymbols.warning4.0&quot;=FALSE). See ?getSymbols for details.</code></pre>
 <pre><code>## [1] &quot;MYL&quot; &quot;SPY&quot;</code></pre>
 <pre class="r"><code># Merge all the list elements into one xts object
 data_merged &lt;- do.call(as.list(data_env), what = merge)
@@ -3162,17 +3152,20 @@ myl_beta</code></pre>
 ## 1.156855</code></pre>
 <p>Also good practice to take a look at the regression summary output to make sure that the beta is statistically significant.</p>
 </div>
-<div id="beta-unlevering-exercise" class="section level2">
-<h2><span class="header-section-number">5.2</span> Beta Unlevering Exercise</h2>
+<div id="un-levering-beta" class="section level2">
+<h2><span class="header-section-number">5.2</span> UN-levering Beta</h2>
 <p>If a firm has more debt then it is deemed to be riskier than a firm with lower debt, with a commensurately higher beta.</p>
 <p>Stripping out this effect from the risk of the overall business (i.e. the assets of the company) requires “unlevering the beta”.</p>
-<p><strong><em>Fernandez Formula for Unlevered Beta:</em></strong></p>
-<p>(βMYL+βD(1−tax rate)∗D/EMYL)/(1+(1−tax rate)D/EMYL)</p>
-<p><strong><em>Characteristics</em></strong> * 40% tax rate<br />
+<p><strong><em>Fernandez Formula for Unlevered Beta:</em></strong><br />
+<span class="math display">\[\frac{(β_{MYL} + β_{D}(1−tax rate) ∗ D/E_{MYL}}{(1 + (1−taxrate)D/E_{MYL})}\]</span></p>
+<p><strong><em>Characteristics</em></strong><br />
+* 40% tax rate<br />
 * debt-to-equity ratio (myl_debt_eq) is 1.68<br />
 * Relevant debt beta (debt_beta) is 0.08<br />
 * Calculated beta (myl_beta)</p>
-<p><strong><em>Steps</em></strong> * Calculate the Mylan Unlevered Beta. * Consider tax rate of 40%.</p>
+<p><strong><em>Steps</em></strong><br />
+* Calculate the Mylan Unlevered Beta<br />
+* Consider tax rate of 40%</p>
 <pre class="r"><code># Calculate the Mylan Unlevered Beta
 myl_unl_beta &lt;- (myl_beta + 0.08 * (1-0.4) * myl_debt_eq)/ (1 + (1 - 0.4) * myl_debt_eq)
 myl_unl_beta</code></pre>
@@ -3180,8 +3173,8 @@ myl_unl_beta</code></pre>
 ## 0.6162826</code></pre>
 <p>N.B. there are other unlevering formulas such as formulas by Miles-Ezzell and Harris-Pringle.</p>
 </div>
-<div id="beta-relevering-exercise" class="section level2">
-<h2><span class="header-section-number">5.3</span> Beta Relevering Exercise</h2>
+<div id="re-levering-beta" class="section level2">
+<h2><span class="header-section-number">5.3</span> RE-levering Beta</h2>
 <p>Once an unlevered beta is calculated based on comparable companies, we have to find the levered beta for the subject firm based on the subject firm’s target leverage ratio.</p>
 <p><strong><em>Characteristics</em></strong><br />
 * Median unlevered beta from comparable companies (med_beta) is 0.777<br />
@@ -3195,8 +3188,8 @@ beta &lt;- med_beta + (med_beta - debt_beta) * (1 - 0.4) * debt_eq
 beta</code></pre>
 <pre><code>## [1] 1.4043</code></pre>
 </div>
-<div id="obtain-risk-free-rate-data" class="section level2">
-<h2><span class="header-section-number">5.4</span> Obtain Risk-Free Rate Data</h2>
+<div id="risk-free-rate" class="section level2">
+<h2><span class="header-section-number">5.4</span> Risk-Free Rate</h2>
 <p>A common proxy for the risk-free rate is the yield on US Treasury bonds, obtainable from the Federal Reserve Electronic Database (FRED).</p>
 <p>For this exercise, we will use the yield on a 10-Year Constant Maturity Treasury security. The US Treasury data is stored in the data.frame object labeled treas, which has two variables: date and yield.</p>
 <p>Because our valuation date is the end of 2016, we need to extract the yield on December 30, 2016, which is the last trading day of 2016 and store it in the object rf.</p>
@@ -3229,9 +3222,10 @@ rf_yield_dec &lt;- rf_yield / 100
 rf_yield_dec</code></pre>
 <pre><code>## [1] 0.0245</code></pre>
 </div>
-<div id="calculate-historical-equity-risk-premium" class="section level2">
-<h2><span class="header-section-number">5.5</span> Calculate Historical Equity Risk Premium</h2>
-<p>One way to calculate the Equity Risk Premium (ERP) is to use historical data. First, we calculate the annual difference between the stock market return and the US Treasury return. Second, we take the average of these annual differences. The code below calculates the historical ERP using data from 1928 to 2016 from Professor Damodaran’s website.</p>
+<div id="historic-equity-risk-premium" class="section level2">
+<h2><span class="header-section-number">5.5</span> Historic Equity Risk Premium</h2>
+<p>One way to calculate the Equity Risk Premium (ERP) is to use historical data. First, we calculate the annual difference between the stock market return and the US Treasury return. Second, we take the average of these annual differences.</p>
+<p>The code below calculates the historical ERP using data from 1928 to 2016 from Professor Damodaran’s website.</p>
 <p><strong><em>Steps</em></strong><br />
 * Calculate the difference between the stock return and the bond return each year<br />
 * Take the average or mean of the annual differences</p>
@@ -3250,11 +3244,9 @@ erp &lt;- mean(diff)
 erp</code></pre>
 <pre><code>## [1] 0.0623541</code></pre>
 </div>
-<div id="calculate-the-cost-of-equity" class="section level2">
-<h2><span class="header-section-number">5.6</span> Calculate the Cost of Equity</h2>
-<p>The most common approach to estimate the cost of equity is to use the Capital Asset Pricing Model (CAPM) by using the firm’s beta (relevered_beta), risk-free rate from FRED (rf), and equity risk premium (erp)</p>
-<p><strong><em>Steps</em></strong><br />
-* Calculate the Cost of Equity using CAPM</p>
+<div id="cost-of-equity" class="section level2">
+<h2><span class="header-section-number">5.6</span> Cost of Equity</h2>
+<p>The most common approach to estimate the cost of equity is to use the Capital Asset Pricing Model (CAPM) by using the firm’s beta (relevered_beta), risk-free (rf) rate from FRED and equity risk premium (erp).</p>
 <pre class="r"><code>capm_coe &lt;- rf_yield_dec + beta * erp
 capm_coe</code></pre>
 <pre><code>## [1] 0.1120639</code></pre>
@@ -3262,7 +3254,7 @@ capm_coe</code></pre>
 </div>
 <div id="relative-valuation" class="section level1">
 <h1><span class="header-section-number">6</span> Relative Valuation</h1>
-<p>Relative valuation allows us to use the valuation of comparable companies to infer the value of our subject firm. In this chapter, we discuss how to identify comparable companies and how to calculate valuation multiples. We also show how to analyze the determinants of multiples.</p>
+<p>Relative valuation allows us to use the valuation of comparable companies to infer the value of our subject firm. The code below extracts Pharma companies from midcap400.</p>
 <pre class="r"><code># Review the first six rows of midcap400
 head(midcap400)</code></pre>
 <div data-pagedtable="false">
@@ -3305,7 +3297,8 @@ pharma</code></pre>
 <h2><span class="header-section-number">6.2</span> Calculating the Relevant Multiple</h2>
 <p>Assuming the companies selected are reasonably comparable to the subject firm, then taking the average (or median) multiple may be a reasonable estimate to apply to the subject firm. The code below calculates the averages for comparable pharma companies.</p>
 <p><strong><em>Steps</em></strong><br />
-* Print contents of pharma data object * Calculate the average for all the metrics in pharma</p>
+* Print contents of pharma data object<br />
+* Calculate the average for all the metrics in pharma</p>
 <pre class="r"><code># Show contents of pharma
 pharma</code></pre>
 <div data-pagedtable="false">
@@ -3323,8 +3316,8 @@ multiples</code></pre>
 <h2><span class="header-section-number">6.3</span> Implied Price</h2>
 <p>The implied prices for the subject firm is equal to the relevant metrics multiplied by the appropriate multiples.</p>
 <p><strong><em>Steps</em></strong><br />
-<em>Create a vector for the subject firm’s LTM EPS ($1), NTM EPS ($2), and BVPS ($8)<br />
-</em> Calculate the implied price based on each of the three metrics by multiplying the metric by the multiple</p>
+* Create a vector for the subject firm’s LTM EPS ($1), NTM EPS ($2), and BVPS ($8)<br />
+* Calculate the implied price based on each of the three metrics by multiplying the metric by the multiple</p>
 <pre class="r"><code># Vector of metrics
 metrics &lt;- c(1, 2, 8)
 
@@ -3335,9 +3328,9 @@ implied_val</code></pre>
 ## 29.67195 26.26908 27.29459</code></pre>
 <p>Remember that even if we find that a stock is undervalued, we don’t know when the stock will revert back to being fairly valued. It may so long that we end up closing our position at a loss - AKA value trap.</p>
 </div>
-<div id="calculate-roe-and-pb" class="section level2">
-<h2><span class="header-section-number">6.4</span> Calculate ROE and P/B</h2>
-<p>Before we can analyze the relation between ROE and P/B, we have to first calculate these variables from ltm_eps, bvps, and price. The code below calculates them for Consumer Discretionary firms (cons_disc) that are in the S&amp;P 400 Midcap Index.</p>
+<div id="roe-and-pb" class="section level2">
+<h2><span class="header-section-number">6.4</span> ROE and P/B</h2>
+<p>Before we can analyse the relation between ROE and P/B, we have to first calculate these variables from ltm_eps, bvps and price. The code below calculates them for Consumer Discretionary firms (cons_disc) that are in the S&amp;P 400 Midcap Index.</p>
 <p><strong><em>Steps</em></strong><br />
 * Calculate Return on Equity<br />
 * Calculate Price-to-Book ratio<br />
@@ -3368,10 +3361,11 @@ head(cons_disc_no_na)</code></pre>
 <h2><span class="header-section-number">6.5</span> Plot P/B vs. ROE</h2>
 <p>After calculating the ROE and P/B multiples for the midcap Consumer Discretionary firms, we can now plot the P/B multiple (y-axis) vs. ROE (x-axis). We can then add a trendline to the plot to visually demonstrate the trend, if any, between the two variables.</p>
 <p><strong><em>Steps</em></strong><br />
-* Set the x-axis range to make sure the entire range of ROE values are covered using min() and max()<br />
-* Set the y-axis range to make sure the entire range of P/B values are covered using min() and max()<br />
-* Plot the P/B vs ROE data and label the x-axis “Return on Equity” and y-axis “Price-to-Book”<br />
+* Set the x-axis range<br />
+* Set the y-axis range<br />
+* Plot the P/B vs ROE data<br />
 * Add a trendline using the regression model with <code>abline()</code></p>
+<p><strong><em>Graph with base R</em></strong></p>
 <pre class="r"><code># Set x-axis range
 x.range &lt;- c(min(cons_disc_no_na$roe), 
              max(cons_disc_no_na$roe))

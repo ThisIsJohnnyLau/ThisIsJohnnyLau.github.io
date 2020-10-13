@@ -33,9 +33,9 @@ This is the current dashboard - an amalgamation of all three projects.
 &nbsp;
 [[Dashboard]](https://thisisjohnnylau.shinyapps.io/COVID-19_scottish_tech_army/)  
 This was one of the three dashboards entered for the initial STA Homebrew challenge.  
-
-
-
+  
+  
+  
 **** 
 
 
@@ -47,7 +47,8 @@ Group project using Shiny to fulfil client brief through data analysis, business
   
   [![Web Traffic Dashboard](pics/BI_dash.png)](https://thisisjohnnylau.shinyapps.io/shiny_dashboard_project/)
   
-
+  
+  
 **** 
 
 
@@ -61,7 +62,8 @@ CodeClan project focussing on client requirements, concept feasibility, presenta
 
   [![UK GDP](pics/business_dash.png)](uk_gdp.pptx)  
   
-
+  
+  
 **** 
 
 
@@ -74,8 +76,8 @@ A bit of fun - I'm a big whisky fan and want to help people pair their palette /
   
   [![Whisky Dashboard](pics/whisky_dash.png)](https://github.com/ThisIsJohnnyLau/whisky)
   
-
-
+  
+  
 **** 
 
 ### Ethics presentation – code of conduct in the new ‘data economy’

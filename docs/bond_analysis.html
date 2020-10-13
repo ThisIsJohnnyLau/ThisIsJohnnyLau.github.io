@@ -2967,15 +2967,15 @@ baa_yield</code></pre>
 * 5 years to maturity</p>
 <p>The code below uses the <code>bondprc</code> function and <code>baa_yield</code>.</p>
 <p><strong><em>Steps</em></strong><br />
-* Use prepared <code>bondprc()</code> to value the bond<br />
-* Four arguments: the par value (p), the coupon rate (r), the time to maturity (ttm), and the yield of the bond (y)</p>
+* Use <code>bondprc()</code> to value the bond<br />
+* Four arguments: the par value (p), the coupon rate (r), the time to maturity (ttm) and the yield of the bond (y)</p>
 <pre class="r"><code># Value bond
 bondprc(p = 100, r = 0.05, ttm = 5, y = 0.0429)</code></pre>
 <pre><code>## [1] 103.1352</code></pre>
 </div>
 <div id="inverse-priceyield-relationship" class="section level2">
 <h2><span class="header-section-number">2.3</span> Inverse price/yield relationship</h2>
-<p>Changes in yield affect a bonds price (aka interest rate sensitivity). Plotting bond price at different yield levels will show a non-linear inverse price / yield relationship.</p>
+<p>Changes in yield affect a bonds price (aka interest rate sensitivity). Plotting bond price at different yield levels will show a non-linear inverse <span class="math inline">\(price / yield\)</span> relationship.</p>
 <p><strong><em>Bond characteristics</em></strong><br />
 * $100 par value<br />
 * 10% coupon rate<br />
@@ -3015,23 +3015,12 @@ plot(prc_yld,
 * Use <code>getSymbols()</code> to obtain data on DGS10 from FRED<br />
 * Subset data (t10yr) from January 2006 to September 2016</p>
 <pre class="r"><code># Load quantmod
-library(quantmod)</code></pre>
-<pre><code>## Loading required package: TTR</code></pre>
-<pre><code>## Registered S3 method overwritten by 'quantmod':
-##   method            from
-##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.</code></pre>
-<pre class="r"><code># Obtain Treasury yield data
-t10yr &lt;- getSymbols(Symbols = &quot;DGS10&quot;, src = &quot;FRED&quot;, auto.assign = FALSE)</code></pre>
-<pre><code>## 'getSymbols' currently uses auto.assign=TRUE by default, but will
-## use auto.assign=FALSE in 0.5-0. You will still be able to use
-## 'loadSymbols' to automatically load data. getOption(&quot;getSymbols.env&quot;)
-## and getOption(&quot;getSymbols.auto.assign&quot;) will still be checked for
-## alternate defaults.
-## 
-## This message is shown once per session and may be disabled by setting 
-## options(&quot;getSymbols.warning4.0&quot;=FALSE). See ?getSymbols for details.</code></pre>
-<pre class="r"><code># Subset data
+library(quantmod)
+
+# Obtain Treasury yield data
+t10yr &lt;- getSymbols(Symbols = &quot;DGS10&quot;, src = &quot;FRED&quot;, auto.assign = FALSE)
+
+# Subset data
 t10yr &lt;- t10yr[&quot;2006-01/2016-09&quot;]
 
 # Plot yields
@@ -3050,20 +3039,12 @@ t10yr &lt;- t10yr[&quot;2006-01/2016-09&quot;]
 <p>The investment grade (IG) spread can be viewed as the market’s perception of how risky investing in bonds is at a certain point in time. The larger the IG spread, the more compensation investors demand for investing in riskier bonds.</p>
 <p>One way to observe the spread is to compare the yield on the highest rated investment grade bonds (Aaa rating) and the yield on the lowest investment grade bonds (Baa rating).</p>
 <p><strong><em>Steps</em></strong><br />
-* Load <code>Quandl</code> package * Retrieve yield data on Aaa and Baa * Generate a diff column for the spread and converted to percentage points<br />
+* Load <code>Quandl</code> package<br />
+* Retrieve yield data on Aaa and Baa<br />
+* Generate a diff column for the spread and converted to percentage points<br />
 * <code>Plot()</code> and view spread over time</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ──────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::first()  masks xts::first()
-## x dplyr::lag()    masks stats::lag()
-## x dplyr::last()   masks xts::last()</code></pre>
-<pre class="r"><code># Need to use Quandl
+<pre class="r"><code>library(tidyverse)
+# Need to use Quandl
 spread &lt;- Quandl(c(&quot;FED/RIMLPAAAR_N_M&quot;, &quot;FED/RIMLPBAAR_N_M&quot;)) %&gt;% 
   rename(&quot;date&quot; = 1,
          &quot;aaa&quot; = 2,
@@ -3099,7 +3080,7 @@ plot(x = spread$date,
 </div>
 <div id="bond-yield-through-trial-and-error" class="section level2">
 <h2><span class="header-section-number">3.3</span> Bond yield through trial-and-error</h2>
-<p>One way to find the bond yield is by trial-and-error. You first start with an initial guess, say 5% and find the price given a 5% yield. E.g. if the resulting price higher / too high compared to the actual observed price (due to the inverse relationship between price and yield) the next guess has to be a higher yield.</p>
+<p>One way to find the bond yield is by trial-and-error. You first start with an initial guess, say 5% and find the price given a 5% yield. E.g. if the resulting price is higher / too high compared to the actual observed price (due to the inverse relationship between price and yield) the next guess has to be a higher yield.</p>
 <p><strong>Bond characteristics</strong><br />
 * Bond price is $95.79<br />
 * 5% coupon rate * 5 years to maturity<br />
@@ -3121,9 +3102,10 @@ bondprc(p = 100, r = 0.05, ttm = 5, y = 0.06)</code></pre>
 </div>
 <div id="bond-yield-with-algorithm" class="section level2">
 <h2><span class="header-section-number">3.4</span> Bond yield with algorithm</h2>
-<p>Trial-and-error is a very long. An alternative is to use an algorithm that does the work for you.</p>
+<p>Trial-and-error is very long. An alternative is to use an algorithm that does the work for you.</p>
 <p><strong>Bond characterstics</strong><br />
-* Bond price is $95.79 * $100 par value<br />
+* Bond price is $95.79<br />
+* $100 par value<br />
 * 5% coupon rate<br />
 * 5 years to maturity</p>
 <p><strong>Steps</strong><br />
@@ -3152,9 +3134,9 @@ ytm(cf)</code></pre>
 <div id="interest-rate-risk" class="section level1">
 <h1><span class="header-section-number">4</span> Interest rate risk</h1>
 <p>Interest rate risk is the biggest risk that bond investors face. When interest rates rise, bond prices fall. Because of this, much attention is paid to how sensitive a particular bond’s price is to changes in interest rates. You can refer to a basis point as an 01, because it represents 0.01%.</p>
-<div id="value-of-basis-point-pv01" class="section level2">
-<h2><span class="header-section-number">4.1</span> Value of basis point (PV01)</h2>
-<p>You can calculate the PV01 by calculating the value of a bond and the value of the same bond with a one basis point change in yield.</p>
+<div id="value-of-basis-point-pv_01" class="section level2">
+<h2><span class="header-section-number">4.1</span> Value of basis point (<span class="math inline">\(PV_{01}\)</span>)</h2>
+<p>You can calculate the <span class="math inline">\(PV_{01}\)</span> by calculating the value of a bond and the value of the same bond with a one basis point change in yield.</p>
 <p><strong>Bond characteristics</strong><br />
 * $100 par value<br />
 * 10% coupon<br />
@@ -3162,7 +3144,7 @@ ytm(cf)</code></pre>
 * 10% yield to maturity</p>
 <p><strong>Steps</strong><br />
 * Use two calls to <code>bondprc()</code><br />
-* Calculate PV01 from the value of one bond minus the value the other with 1bp difference in interest rate<br />
+* Calculate <span class="math inline">\(PV_{01}\)</span> from the value of one bond minus the value the other with 1bp difference in interest rate<br />
 * Use <code>abs()</code> to ensure a positive output</p>
 <pre class="r"><code># Calculate the PV01
 abs(bondprc(p = 100, r = 0.10, ttm = 20, y = 0.1001) 
@@ -3172,12 +3154,12 @@ abs(bondprc(p = 100, r = 0.10, ttm = 20, y = 0.1001)
 <div id="approximate-bond-duration" class="section level2">
 <h2><span class="header-section-number">4.2</span> Approximate bond duration</h2>
 <p>The full duration formula is more complex but a useful approximation is called the approximate duration. This formula provides a simple way to estimate duration without getting into the nitty-gritty.</p>
-<p>(P(down)−P(up))/(2∗P∗Δy)</p>
+<p><span class="math display">\[\frac{P(down)−P(up)}{2∗P∗Δy}\]</span></p>
 <p><strong>Notation</strong><br />
-* P is the price of the bond<br />
-* P(down) is the price of the bond if yield decreases<br />
-* P(up) is the price of the bond if yield increases<br />
-* Δy is the expected change in yield</p>
+* <span class="math inline">\(P\)</span> is the price of the bond<br />
+* <span class="math inline">\(P(down)\)</span> is the price of the bond if yield decreases<br />
+* <span class="math inline">\(P(up)\)</span> is the price of the bond if yield increases<br />
+* <span class="math inline">\(Δy\)</span> is the expected change in yield</p>
 <p><strong>Bond characteristics</strong> * $100 par value<br />
 * 10% coupon rate<br />
 * 20 years to maturity<br />
@@ -3211,10 +3193,10 @@ duration</code></pre>
 <p><strong>Calulation</strong><br />
 * Yields are expected to decrease by 1% * Bond price (px) is $100<br />
 * Bond duration is 8.545937<br />
-* −D∗Δy</p>
+* <span class="math inline">\(−D∗Δy\)</span></p>
 <p><strong>Notation</strong><br />
-* D is the duration<br />
-* Δy is the change in yield</p>
+* <span class="math inline">\(D\)</span> is the duration<br />
+* <span class="math inline">\(Δy\)</span> is the change in yield</p>
 <p><strong>Steps</strong><br />
 * Estimate percentage change (duration_pct_change) based on <code>duration</code> if yields are expected to decrease by 1%<br />
 * Estimate dollar change (duration_dollar_change) based on (duration_pct_change) and <code>px</code> if yields are expected to decrease by 1%</p>
@@ -3229,7 +3211,7 @@ duration_dollar_change</code></pre>
 </div>
 <div id="approximate-convexity" class="section level2">
 <h2><span class="header-section-number">4.4</span> Approximate convexity</h2>
-<p>Bond price estimates can be improved by adding the convexity term to the duration effect, accounting for how bowed the price/YTM curve is for the bond</p>
+<p>Bond price estimates can be improved by adding the convexity term to the duration effect, accounting for how bowed the price / YTM curve is for the bond</p>
 <p><strong>Bond characteristics</strong><br />
 * $100 par value<br />
 * 10% coupon<br />
@@ -3237,12 +3219,12 @@ duration_dollar_change</code></pre>
 * 10% yield to maturity<br />
 * 1% expected change in yield</p>
 <p>The approximate convexity formula is<br />
-(P(up)+P(down)−2∗P)/(P∗Δy2)</p>
+<span class="math display">\[\frac{P(up)+P(down)−2∗P}{(P∗Δy2}\]</span></p>
 <p><strong>Notation</strong><br />
-* P is the price of the bond<br />
-* P(up) is the price of the bond when yields increase<br />
-* P(down) is the price of the bond when yields decrease<br />
-* Δy is the expected change in yield</p>
+* <span class="math inline">\(P\)</span> is the price of the bond<br />
+* <span class="math inline">\(P(up)\)</span> is the price of the bond when yields increase<br />
+* <span class="math inline">\(P(down)\)</span> is the price of the bond when yields decrease<br />
+* <span class="math inline">\(Δy\)</span> is the expected change in yield</p>
 <pre class="r"><code># Calculate approximate convexity
 convexity &lt;- (px_up + px_down - 2 * px) / (px * (0.01)^2)
 convexity</code></pre>
@@ -3252,7 +3234,7 @@ convexity</code></pre>
 <h2><span class="header-section-number">4.5</span> Effect of convexity on bond price</h2>
 <p>Now that you’ve calculated convexity for your bond, you can estimate the effect of convexity on the bond’s price.</p>
 <p>Percentage change based on convexity is given by<br />
-0.5∗convexity∗(Δy)2</p>
+<span class="math display">\[0.5∗convexity∗(Δy)^2\]</span></p>
 <p><strong>Values</strong><br />
 * Convexity 116.521<br />
 * Bond price (px) is $100</p>
@@ -3260,7 +3242,7 @@ convexity</code></pre>
 * Estimate percentage change (convexity_pct_change) based on convexity if yields decrease by 1%<br />
 * Estimate dollar change (convexity_dollar_change) based on convexity if yields decrease by 1%</p>
 <pre class="r"><code># Estimate percentage change
-convexity_pct_change &lt;- 0.5 * convexity * (-0.01)^2
+convexity_pct_change &lt;- 0.5 * convexity * (-0.01) ^ 2
 convexity_pct_change</code></pre>
 <pre><code>## [1] 0.005826088</code></pre>
 <pre class="r"><code># Estimate dollar change

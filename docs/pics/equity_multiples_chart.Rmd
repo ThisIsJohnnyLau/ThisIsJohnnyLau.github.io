@@ -1,0 +1,821 @@
+---
+title: "Equity valuation"
+output:
+  html_document:
+    output_dir: "html"
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    # css: ../../../styles.css
+  pdf_document: default
+
+---
+
+# Introduction
+
+How do we know when a stock is cheap or expensive? To do this, we need to compare the stock's price with its value. Every investor has to form his or her valuation of the stock.
+  
+The code below shows the fundamentals of valuing stocks using present value approaches, such as free cash flow to equity and dividend discount models, and valuation multiples.
+
+# Present value approaches
+
+To have a solid understanding of how the value of the equity compares to the stock price it is important to appreciate fundamental concepts of valuation., The most important of these is the 'time value of money' which is used in discounted cash flow methods.
+
+## Time Value of Money
+
+Time value money is a concept that permeates a lot of financial applications. This basic premise is "money today is worth more than money tomorrow" e.g. you would rather receive $1 today than $1 tomorrow. To forego $1 today you will have to be induced to receive more than $1 in the future. How much would it take to make you indifferent from receiving the $1 today and waiting?
+
+***Example***  
+* Expected 5% annual return (r) on a comparable investment, 
+* Future value (fv) is $100
+
+***Calculations***
+* Present value of $100 one year from now, 
+* Present value of $100 two years from now, 
+
+```{r}
+# Calculate PV of $100 one year from now
+pv_1 <- 100 / (1 + 5 / 100)
+pv_1 
+
+# Calculate PV of $100 two years from now
+pv_2 <- 100 / (1 + 5 / 100) ^ 2
+pv_2
+```
+
+
+
+## Calculate Free Cash Flow to Equity
+
+After-tax income differs from free cash flow to equity (FCFE) because after-tax income is an accrual accounting concept (i.e., after-tax income includes non-cash items like depreciation and amortization) and does not exclude any additional investments (i.e., capital expenditures and increases in working capital) necessary to maintain the firm's operations and grow the firm based on its projections
+
+
+Given a firm's after-tax income (after_tax_income), Depreciation/Amortization (depn_amort), capital expenditures (capex), and increases in working capital (incr_wc), calculate the free cash flow to equity
+
+```{r echo = FALSE}
+after_tax_income <- c(22.8, 24.0, 30.6, 38.4, 43.2)
+capex <- c(11, 11, 12, 14, 15)
+depn_amort <- c(11, 12, 12, 14, 15)
+incr_wc <- c(16, 16, 14, 14, 14)
+shout <- 10
+```
+
+
+```{r}
+# Calculate FCFE
+fcfe <- after_tax_income + depn_amort - capex - incr_wc
+fcfe
+```
+
+ Free Cash Flow to Equity are the cash flows that the firm can pay out to its shareholders without affecting its operations.
+ 
+ 
+## Calculating Terminal Value
+
+A firm is generally thought to have an infinite life, so although our FCFE projection only goes five years we have to come up with a method that lets us estimate the value of the FCFE beyond Year 5. The value of FCFE from Year 6 into perpetuity is called the "Terminal Value" and a common approach to estimate the Terminal Value is the Perpetuity with Growth Model.
+
+***Example***, 
+* Growth rate (g) of 3.4%, 
+* Cost of equity (ke) of 10.5%, 
+* FCFE for 2021 from the prior example (fcfe_2021)
+
+```{r echo = FALSE}
+g <- 0.034
+ke <- 0.105
+fcfe_2021 <- fcfe[5]
+```
+
+
+```{r}
+# Calculate the terminal value as of 2021
+tv_2021 <- fcfe_2021 * (1 + g) / (ke - g)
+tv_2021
+```
+
+This is one of the most important calculations in valuation as the terminal value makes up most of the value in a DCF.
+ 
+## Calculating Present Value of Free Cash Flow to Equity
+
+The previous Free Cash Flow to Equity (FCFE) projections go from 2017 to 2021 and we can discount these to the present.
+
+
+***Steps***  
+* Add the number of discount periods for each cash flow  
+* Calculate the present value factor for each cash flow  
+* Calculate the present value of each cash flow  
+* Sum the present values of the cash flows  
+
+```{r}
+
+fcfe <- data.frame(fcfe)
+
+# Add discount periods
+fcfe$periods <- seq(1, 5, 1)
+
+# Calculate Present Value Factor
+fcfe$pv_factor <- 1 / (1 + ke) ^ fcfe$periods
+
+# Calculate Present Value of each Cash Flow
+fcfe$pv <- fcfe$fcfe * fcfe$pv_factor
+
+# Total Present Value
+pv_fcfe <- sum(fcfe$pv)
+pv_fcfe
+
+```
+
+
+
+## Calculate Present Value of Terminal Value
+
+After calculating the present value of the projection period free cash flow to equity (FCFE), we now calculate the present value of the terminal value previously calculated (tv_2021).
+
+```{r}
+# Calculate Present Value
+pv_tv <- tv_2021 / (1 + ke) ^ 5 
+pv_tv
+```
+
+N.B. Discounting by an extra year is one of the most common mistakes in valuation.
+
+## Calculate Equity Value
+
+***Inputs***  
+* Present value of the free cash flows (pv_fcfe) from 2017 to 2021  
+* Present value of the terminal value (pv_tv)  
+* Firm has a shares outstanding (shout) of 10 million shares  
+
+
+***Steps***, 
+* Calculate the firm's equity value   
+* Calculate the firm's equity value per share  
+
+
+```{r}
+# Calculate Equity Value
+eq_val <- sum(pv_fcfe) + pv_tv
+eq_val
+
+# Calculate Equity Value Per Share
+eq_val_per_share <- eq_val / shout
+eq_val_per_share
+```
+
+# Dividend discount model
+
+## Analyze Revenue Trends - Bar Chart
+
+A quick way to check data is simply to plot it., The code below formats a bar chart to distinguish between actual revenues (hist_rev) and forecasts (rev_proj).
+
+***Steps***, 
+* Create amalgamated revenue object (rev_split)  
+* Add years to the data  
+* Create a bar chart of the data in rev_split  
+* Color the bars red and blue  
+* Add title  
+
+```{r echo = FALSE}
+hist_rev <- c(86.8, 89.0, 93.0, 128.6, 176.4, 171.4, 214.2, 236.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+rev_proj <- c(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 193.2, 212.9, 225.0, 279.2, 295.9)
+```
+
+***In base R***, 
+```{r}
+# Combine hist_rev and rev_proj
+rev_split <- rbind(hist_rev, rev_proj)
+
+# Rename the column headers
+colnames(rev_split) <- seq(2009, 2021, 1)
+
+# Create a bar plot of the data
+barplot(rev_split,
+        col = c("red", "blue"),
+        main = "Historical vs. Projected Revenues")
+legend("topleft",
+       legend = c("Historical", "Projected"),
+       fill = c("red", "blue"))
+```
+
+***Using `ggplot`***
+```{r message=FALSE}
+# Load tidyverse
+library(tidyverse)
+
+# Create year column
+years <- seq(2009, 2021, 1)
+
+# Combine with hist_rev and rev_proj
+rev_split <- cbind(years, hist_rev, rev_proj) %>%
+        as.data.frame() %>% 
+        pivot_longer(-years)
+
+# Create a bar plot of the data
+rev_split %>%
+        ggplot() +
+        aes(years, value, fill = name) +
+        geom_col() +
+        labs(title = "Historical vs. Projected Revenues") +
+        theme(legend.position = "bottom",
+              legend.title = element_blank())
+```
+
+
+# Projections and assumptions
+
+Equity valuations rely on good projections and assumptions so being able to ask the right questions is key.
+
+
+## Analyze Revenue Trends - Regression
+
+Visual checks on the data are a great starting point but a slightly more sophisticated tool to determine changes in the data is regression analysis.
+
+The code below checks whether the revenue trend has shifted between the historical period and the projection period. Whilst a statistical shift is not bad in itself, it would certainly prompt further investigation to check the projection and underlying rationale.
+
+```{r echo = FALSE}
+rev_all <- c(86.8, 89.0, 93.0, 128.6, 176.4, 171.4, 214.2, 236.0, 193.2, 212.9, 225.0, 279.2, 295.9) %>%
+        as.data.frame() %>%
+        setNames("rev_proj")
+```
+
+Note: A typical threshold for statistical significance is if the p-value of the trend variable is less than or equal to 0.10.
+
+***Steps***  
+* Create a trend variable for historical and projected revenues  
+* Create a trend shift variable that identifies the projection period  
+* Regress revenue projections (rev_proj) on the trend and shift variables, using the rev_all data  
+* Print the summary of reg  
+
+```{r}
+# Create a trend variable
+rev_all$trend <- seq(1, 13, 1)
+
+# Create shift variable
+rev_all$shift <- c(rep(0, 8), rep(1, 5))
+
+# Run regression
+reg <- lm(rev_proj ~ trend + shift, data = rev_all)
+
+# Print regression summary
+summary(reg)
+```
+
+
+## Calculate Retention Ratio
+
+The terminal value, as mentioned, makes up the majority of a firm's value. As it is influenced by the perpetuity growth rate (PGR) assumption then this should also be scrutinised. Expected growth rate, sustainable growth rate and perpetuity growth rate are pretty much the same thing. 
+
+***PGR should reflect economic reality***  
+* Cannot be greater than the projected long-term growth rate of the overall economy
+* Consistent with the reinvestment rate and return on equity projections during the terminal period  
+* Sustainable over the very long term by normal operations  
+* Demonstrates expected growth from reinvestment of earnings  
+The retention ratio is the amount of reinvestment divided by the after-tax income. 
+
+***Steps***  
+* Calculate the amount of reinvestment using the last year's projections  
+* Calculate the retention ratio from after_tax_income, depn_amort, incr_wc, and capex  
+
+
+```{r}
+# Calculate reinvestment amount
+reinvestment <- capex[5] - depn_amort[5] + incr_wc[5]
+reinvestment
+
+# Calculate retention ratio
+retention_ratio <- reinvestment / after_tax_income[5]
+retention_ratio
+```
+
+
+
+## Perpetuity Growth Rate Calculation
+
+The expected growth rate is calculated from the retention ratio and (expected) return on new invested capital which we assume to equal the cost of capital (ke).  Firms are not expected to generate excess profits in a competitive market.
+
+In the case below, cost of capital (ke) is 10.5%.
+
+```{r echo = FALSE}
+ke <- 0.105
+```
+
+```{r}
+# Calculate expected growth rate
+exp_growth_rate <- retention_ratio * ke
+exp_growth_rate
+```
+
+
+## Valuing Preferred Stock
+
+The cost of preferred equity is the rate used to discount cash flows generated by the preferred stock.
+
+For preferred equity we assume that the dividend growth rate is zero, which we can discount by the *cost of preferred equity*.
+
+***Characteristics***  
+* Stated_value is $25  
+* Dividend rate (div_rate) is 5%  
+* Cost of preferred equity (kp) is 10%  
+
+***Steps***  
+* Calculate the amount of preferred dividends.
+* Calculate the value of the preferred stock assuming no growth in preferred dividends.
+
+```{r echo = FALSE}
+stated_value <- 25
+div_rate <- 0.05
+kp <- 0.1
+```
+
+```{r}
+# Calculate dividend of preferred stock
+div <- stated_value * div_rate
+div
+
+# Calculate value of preferred stock
+pref_value <- div/(kp)
+pref_value
+```
+
+## Valuation Assuming No Dividends For First Few Years
+
+If a firm does not pay dividends today, we could still expect such firms to pay dividends in the future as the firm matures. This requires a two-step valuation.
+
+***Characteristics***  
+* Dividends begin in year 6  
+* Stated_value is $25  
+* Dividend rate (div_rate) is 5%  
+* Cost of preferred equity (kp) is 10%
+
+***Steps***  
+* Calculate the Year 5 value of the stock.
+* Discount the Year 5 value to the present.
+
+```{r}
+# Value of Preferred if dividends start five years from now
+pref_value_yr5 <- div_rate * stated_value / kp
+pref_value_yr5
+
+# Value discounted to present
+pref_value <- pref_value_yr5 / (1 + kp)^5
+pref_value
+```
+
+## Valuation Assuming 2-Stages of Dividends
+The dividend discount model applies even when dividends are not the same every year. In the example below there is an initial growth period (stage 1) with higher dividends, and then lower dividends (in perpetuity) once the company matures (stage 2).  
+
+In the 1st stage, the high dividend payments occur for a finite period of time. We can layout the cash flows for the first few years and then discount each of those annual cash flows to the present.
+
+In the 2nd stage, we use the Perpetuity with Growth formula to value the lower dividend payments into perpetuity.
+
+***Characteristics***  
+* Higher dividend rate (high_div) of 10% from Year 1 to 5 or $2.50 per year  
+* Discount rate (kp) for Years 1 to 5 is 10%  
+* Present value of the dividends from Year 6 onwards (pref_value_low)  
+
+***Steps***  
+* Calculate preferred dividend during 1st stage  
+* Add variable for the number of discount periods  
+* Calculate discount factors  
+* Calculate present value of the dividends for Years 1 to 5  
+* Calculate present value of all cash flows from the 1st stage  
+* Add the value during 1st stage to the value of the 2nd stage  
+
+```{r echo = FALSE}
+div_rate_high <- 0.1
+pref_value_low <- pref_value
+```
+
+```{r}
+# Preferred dividend in Years 1 to 5
+high_div <- stated_value * div_rate_high
+
+# Create vector of Year 1-5 dividends
+pref_cf <- rep(high_div, 5)
+
+# Convert to data frame
+pref_df <- data.frame(high_div, pref_cf)
+
+# Add discount periods
+pref_df$periods <- seq(1,5,1)
+
+# Calculate discount factors
+pref_df$pv_factor <- 1/(1 + kp)^pref_df$periods
+
+# Calculate PV of dividends
+pref_df$pv_cf <- pref_df$pv_factor * high_div
+
+# Calculate value during high stage
+pref_value_high <- sum(pref_df$pv_cf)
+
+# Calculate value of the preferred stock
+pref_value_low + pref_value_high
+```
+
+
+# Discount Rate / Cost of Capital Estimation
+
+To be able to discount cash flows, we need a discount rate. For the free cash flow to equity and dividend discount model, the cost of equity is appropriate.
+
+## Calculating Returns
+
+The code below calculates five years of monthly retuns for Mylan, a healthcare company, and S&P 500 ETF.
+
+***Steps***  
+* Download price data using `quantmod`  
+* Calculate monthly returns for MYL and SPY using `Delt()` function  
+* Remove the first observation which is a missing value  
+
+```{r}
+# Load libary
+library(quantmod)
+
+# Create environment
+data_env <- new.env()
+
+# Store symbols of interest
+symbols <- c("MYL", "SPY")
+
+# Download price data specifying monthly prices
+getSymbols(symbols, env = data_env, periodicity = "monthly")
+
+# Merge all the list elements into one xts object
+data_merged <- do.call(as.list(data_env), what = merge)
+
+# Subset data of interest and select adjusted close
+prices <- data_merged["2011-12-31/2016-12-31"] %>% 
+        Ad()
+
+```
+
+```{r}
+# Show first six observations of prices
+head(prices)
+
+# Calculate MYL monthly return
+rets <- Delt(prices$MYL.Adjusted)
+
+# Calculate SPY monthly return
+rets$spy <- Delt(prices$SPY.Adjusted)
+
+# Change label of first variable
+names(rets)[1] <- "myl"
+
+# Remove first observation - NA
+rets <- tail(rets, -1)
+```
+
+Remember that it's always good to look at the data before performing any analysis. You want to make sure, say, the returns are in chronological order. Otherwise, you could be dividng yesterday's price by today's price instead of today's price by yesterday's price.
+
+```{r}
+# Run regression
+reg <- lm(myl ~ spy, data = rets)
+
+# Save beta
+myl_beta <- reg$coefficients[2]
+myl_beta
+```
+
+Also good practice to take a look at the regression summary output to make sure that the beta is statistically significant.
+
+## Beta Unlevering Exercise
+
+If a firm has more debt then it is deemed to be riskier than a firm with lower debt, with a commensurately higher beta.
+
+Stripping out this effect from the risk of the overall business (i.e. the assets of the company) requires "unlevering the beta".
+
+***Fernandez Formula for Unlevered Beta:***  
+
+(βMYL+βD(1−tax rate)∗D/EMYL)/(1+(1−tax rate)D/EMYL)
+
+
+***Characteristics***
+* 40% tax rate  
+* debt-to-equity ratio (myl_debt_eq) is 1.68  
+* Relevant debt beta (debt_beta) is 0.08  
+* Calculated beta (myl_beta)
+
+***Steps***
+* Calculate the Mylan Unlevered Beta.
+* Consider tax rate of 40%.
+
+```{r echo = FALSE}
+debt_beta <- 0.08 
+myl_debt_eq <- 1.68
+```
+
+```{r}
+# Calculate the Mylan Unlevered Beta
+myl_unl_beta <- (myl_beta + 0.08 * (1-0.4) * myl_debt_eq)/ (1 + (1 - 0.4) * myl_debt_eq)
+myl_unl_beta
+```
+
+N.B. there are other unlevering formulas such as formulas by Miles-Ezzell and Harris-Pringle.
+
+## Beta Relevering Exercise
+
+Once an unlevered beta is calculated based on comparable companies, we have to find the levered beta for the subject firm based on the subject firm's target leverage ratio.
+
+
+```{r echo = FALSE}
+med_beta = 0.777
+debt_eq <- 1.50
+debt_beta <-   0.08
+```
+
+***Characteristics***  
+* Median unlevered beta from comparable companies (med_beta) is 0.777  
+* Subject firm's debt-to-equity ratio (debt_eq) is 1.50  
+* Relevant debt beta (debt_beta) equals 0.08  
+
+***Steps***  
+* Calculate the subject firm's levered beta  
+* Consider tax rate of 40%  
+
+```{r}
+# Calculate levered beta
+beta <- med_beta + (med_beta - debt_beta) * (1 - 0.4) * debt_eq
+beta
+```
+
+## Obtain Risk-Free Rate Data
+
+A common proxy for the risk-free rate is the yield on US Treasury bonds, obtainable from the Federal Reserve Electronic Database (FRED). 
+
+For this exercise, we will use the yield on a 10-Year Constant Maturity Treasury security. The US Treasury data is stored in the data.frame object labeled treas, which has two variables: date and yield.
+
+Because our valuation date is the end of 2016, we need to extract the yield on December 30, 2016, which is the last trading day of 2016 and store it in the object rf.
+
+***Steps***  
+* Extract the yield for "2016-12-30" from treas  
+* Keep only the observation in the yield column  
+* Convert from percentage terms to decimal terms   
+
+```{r echo = FALSE}
+treas <- getSymbols(Symbols = "DGS10", src = "FRED", auto.assign = FALSE)
+```
+
+
+```{r}
+# Review treas
+head(treas)
+dim(treas)
+        
+# Extract 2016-12-30 yield 
+rf <- treas["2016-12-30"]
+rf
+
+# Keep only the observation in the second column
+rf_yield <- as.numeric(rf$DGS10)
+rf_yield
+
+# Convert yield to decimal terms
+rf_yield_dec <- rf_yield / 100
+rf_yield_dec
+```
+
+## Calculate Historical Equity Risk Premium
+
+One way to calculate the Equity Risk Premium (ERP) is to use historical data. First, we calculate the annual difference between the stock market return and the US Treasury return. Second, we take the average of these annual differences. 
+The code below calculates the historical ERP using data from 1928 to 2016 from Professor Damodaran's website.  
+
+***Steps***  
+* Calculate the difference between the stock return and the bond return each year  
+* Take the average or mean of the annual differences  
+
+```{r echo = FALSE}
+load("data/damodaran_histret.rda")
+```
+
+```{r}
+# Review the first six rows of damodaran
+head(damodaran)
+
+# Calculate annual difference between stocks and bonds
+diff <- damodaran$sp_500 - damodaran$tbond_10yr
+
+# Calculate ERP
+erp <- mean(diff)
+erp
+```
+
+## Calculate the Cost of Equity
+
+The most common approach to estimate the cost of equity is to use the Capital Asset Pricing Model (CAPM) by using the firm's beta (relevered_beta), risk-free rate from FRED (rf), and equity risk premium (erp)  
+
+***Steps***  
+* Calculate the Cost of Equity using CAPM
+
+```{r}
+capm_coe <- rf_yield_dec + beta * erp
+capm_coe
+```
+
+# Relative Valuation
+  
+Relative valuation allows us to use the valuation of comparable companies to infer the value of our subject firm. In this chapter, we discuss how to identify comparable companies and how to calculate valuation multiples. We also show how to analyze the determinants of multiples.
+
+```{r echo = FALSE}
+load("data/midcap400.rda")
+```
+
+
+```{r}
+# Review the first six rows of midcap400
+head(midcap400)
+
+# Subset Pharmaceuticals firms  
+pharma <- subset(midcap400, gics_subindustry == "Pharmaceuticals")
+pharma
+```
+
+## Calculating Valuation Multiples
+
+In practice, there are times when the EPS or BVPS is not populated from the commonly used databases and code used to calculate them needs to accomdate when the EPS or BVPS is negative.
+
+***Steps***  
+Using `ifelse()`:  
+* Calculate P/LTM EPS  
+* Calculate P/NTM EPS  
+* Calculate P/BVPS  
+
+```{r}
+# Calculate P/LTM EPS
+pharma$ltm_p_e <- ifelse(pharma$ltm_eps > 0, pharma$price / pharma$ltm_eps, NA)
+
+# Calculate P/NTM EPS
+pharma$ntm_p_e <- ifelse(pharma$ntm_eps > 0, pharma$price / pharma$ntm_eps, NA)
+
+# Calculate P/BVPS
+pharma$p_bv <- ifelse(pharma$bvps > 0, pharma$price / pharma$bvps, NA)
+pharma
+```
+
+## Calculating the Relevant Multiple
+
+Assuming the companies selected are reasonably comparable to the subject firm, then taking the average (or median) multiple may be a reasonable estimate to apply to the subject firm. The code below calculates the averages for comparable pharma companies.
+
+***Steps***  
+* Print contents of pharma data object
+* Calculate the average for all the metrics in pharma  
+
+```{r}
+# Show contents of pharma
+pharma
+
+# Calculate average multiples
+multiples <- colMeans(pharma[9:11], na.rm = TRUE)
+multiples
+```
+
+## Implied Price
+
+The implied prices for the subject firm is equal to the relevant metrics multiplied by the appropriate multiples.  
+
+***Steps***  
+*Create a vector for the subject firm's LTM EPS ($1), NTM EPS ($2), and BVPS ($8)  
+* Calculate the implied price based on each of the three metrics by multiplying the metric by the multiple  
+
+```{r}
+# Vector of metrics
+metrics <- c(1, 2, 8)
+
+# Calculate implied values
+implied_val <- multiples * metrics
+implied_val
+```
+
+Remember that even if we find that a stock is undervalued, we don't know when the stock will revert back to being fairly valued. It may so long that we end up closing our position at a loss - AKA value trap.
+ 
+## Calculate ROE and P/B
+
+Before we can analyze the relation between ROE and P/B, we have to first calculate these variables from ltm_eps, bvps, and price.  The code below calculates them for Consumer Discretionary firms (cons_disc) that are in the S&P 400 Midcap Index.
+
+***Steps***  
+* Calculate Return on Equity  
+* Calculate Price-to-Book ratio  
+* Remove missing values from cons_disc using `complete.cases()`  
+
+```{r}
+cons_disc <- subset(midcap400, gics_sector == "Consumer Discretionary")
+cons_disc
+
+# Calculate ROE
+cons_disc$roe <- cons_disc$ltm_eps / cons_disc$bvps
+
+# Calculate Price to Book ratio
+cons_disc$p_bv <- ifelse(cons_disc$bvps >= 0, cons_disc$price / cons_disc$bvps, NA)
+
+# Remove NA
+cons_disc_no_na <- cons_disc[complete.cases(cons_disc), ]
+head(cons_disc_no_na)
+```
+
+## Plot P/B vs. ROE
+
+After calculating the ROE and P/B multiples for the midcap Consumer Discretionary firms, we can now plot the P/B multiple (y-axis) vs. ROE (x-axis). We can then add a trendline to the plot to visually demonstrate the trend, if any, between the two variables.
+
+***Steps***  
+* Set the x-axis range to make sure the entire range of ROE values are covered using min() and max()  
+* Set the y-axis range to make sure the entire range of P/B values are covered using min() and max()  
+* Plot the P/B vs   ROE data and label the x-axis "Return on Equity" and y-axis "Price-to-Book"  
+* Add a trendline using the regression model with `abline()`  
+
+```{r}
+# Set x-axis range
+x.range <- c(min(cons_disc_no_na$roe), 
+             max(cons_disc_no_na$roe))
+
+# Set y-axis range
+y.range <- c(min(cons_disc_no_na$p_bv), 
+             max(cons_disc_no_na$p_bv))
+
+# Plot data
+plot(y =   cons_disc_no_na$p_bv,
+     x =   cons_disc_no_na$roe,
+     xlab = "Return on Equity",
+     ylab = "Price-to-Book",
+     xlim = x.range,
+     ylim = y.range,
+     col = "blue",
+     main = "Price-to-Book Value and Return on Equity
+     Of Mid-Cap Consumer Discretionary Firms")
+
+# Regress roe on p_bv
+reg <- lm(p_bv ~ roe, data =   cons_disc_no_na)
+
+# Add trend line in red
+abline(reg, col = "red")
+```
+
+***Graph using `ggplot`***
+
+```{r}
+# The trendline requires specification of intercept and slope (taken from next output) 
+cons_disc_no_na %>% 
+        ggplot() +
+        aes(roe, p_bv) +
+        geom_point(shape = 1, color = "blue") +
+        geom_smooth(method = lm, se = FALSE, colour = "red") +
+        labs(title = "Price-to-Book Value and Return on Equity \n
+     Of Mid-Cap Consumer Discretionary Firms",
+     x = "Return on Equity",
+     y = "Price-to-book") +
+        ylim(y.range) +
+        xlim(x.range)
+```
+
+
+## Strength of Relationship
+
+The plot shows a positive relationship between P/B and ROE. However, we may want to know how strong this relationship is from a quantitative perspective. The strength of the relationship between ROE and P/B can be determined by looking at the R-squared of the regression, which is a measure of how good the fit of the model is.
+
+P/B is regressed on Return on Equity below. The intercept and beta are stored in a and b, respectively, for use later.
+
+***Steps***  
+* Call summary() on the regression object  
+* Store the intercept term in a  
+* Store beta in b  
+
+```{r}
+# Regression model 
+reg <- lm(p_bv ~ roe, data = cons_disc)
+
+# Regression summary
+summary_reg <- summary(reg)
+summary_reg
+
+# Store intercept
+a <- summary_reg$coefficients[1]
+a
+
+# Store beta
+b <- summary_reg$coefficients[2]
+b
+```
+
+## Implied Price Using Regression
+
+The relationship between ROE and P/B summarized by the regression can also be used to imply the relevant P/B multiple for our subject firm and, consequently, an implied price.
+
+***Characteristics***  
+* ROE is 20%  
+* BVPS is $8  
+
+
+***Steps***  
+* Calculate the implied P/B multiple  
+* Calculate the implied price for the subject firm  
+
+```{r}
+# Calculate implied P/B
+implied_p_b <- a + b * 0.20
+implied_p_b
+
+# Calculate implied price
+implied_price <- implied_p_b * 8
+implied_price
+```
+
+Quantitative approaches, such as regression analysis, are beneficial due to their objectivity. However, blindly accepting results from quantitative approaches can still lead to problems just the same way as more subjective approaches.  The numbers still need to make sense.
+

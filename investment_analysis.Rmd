@@ -16,11 +16,11 @@ Investment analysis without a spreadsheet in sight...  Click on hyperlinks or pi
 # Security analysis
 
 ## Equity valuation
-[[Code]](equity_analysis.html)
+[[Code]](equity_valuation.html)
 
 How do we know when a stock is cheap or expensive? To do this, we need to compare the stock's price with its value. Every investor has to form his or her own valuation.
 
-[![Pricetobook](pics/equity_multiples_chart.png)](equity_analysis.html)  
+[![Pricetobook](pics/equity_multiples_chart.png)](equity_valuation.html)  
 
 To have a solid understanding of how the value of the equity compares to the stock price it is important to appreciate fundamental concepts of valuation such as *the time value of money*.  
 

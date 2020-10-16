@@ -12,7 +12,14 @@ output:
 
 Here are a few data analysis work examples.
   
-****     
+****    
+
+## Social media analysis
+  
+[[analysis]](social_media.html)
+
+
+****  
 ## Scottish Tech Army COVID-19 dashboard
   
 ***Current***  

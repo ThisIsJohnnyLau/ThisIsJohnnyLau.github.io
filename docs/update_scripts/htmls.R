@@ -14,3 +14,5 @@ file.copy(here("../../dirty_data_project_files/dirty_data_project/task1/analysis
 file.copy(here("../../../../investing/investment_analysis/security_analysis/bond_analysis/bond_analysis.html"), here("docs/bond_analysis.html"), overwrite = TRUE, recursive = FALSE, copy.mode = TRUE)
 
 file.copy(here("../../../../investing/investment_analysis/security_analysis/equity_analysis_in_R/equity_valuation.html"), here("docs/equity_valuation.html"), overwrite = TRUE, recursive = FALSE, copy.mode = TRUE)
+
+file.copy(here("../../../../GitHub Portfolio/git_respositories/social_media/social_media_analysis.html"), here("docs/social_media.html"), overwrite = TRUE, recursive = FALSE, copy.mode = TRUE)

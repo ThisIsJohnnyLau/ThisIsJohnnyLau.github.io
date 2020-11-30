@@ -26,7 +26,7 @@ Exploratory data analysis, leveraging the power of the Twitter API, for social g
 
 >People all over the world are taking practical
 steps to protect what they love from climate
-change before it’s too late. Can we count you in? **[- Count Us In Campaign](https://www.count-us-in.org/project/)**  
+change before it’s too late. Can we count you in? **[- Count Us In campaign](https://www.count-us-in.org/project/)**  
   
 ****  
 ## Scottish Tech Army COVID-19 dashboard

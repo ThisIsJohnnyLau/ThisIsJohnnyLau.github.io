@@ -16,6 +16,8 @@ navbar:
       href: data_analysis.html
     - text: Investment analysis
       href: investment_analysis.html
+    - text: Consultancy
+      href: clients.html
 #    - text: Media
 #      href: media.html
     - text: Contact

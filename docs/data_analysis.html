@@ -22,6 +22,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -310,11 +321,11 @@ $(document).ready(function () {
 <hr />
 <div id="social-media-analysis" class="section level2">
 <h2>Social media analysis</h2>
-<p><a href="social_media.html">[analysis]</a></p>
-<hr />
-</div>
-<div id="scottish-tech-army-covid-19-dashboard" class="section level2">
-<h2>Scottish Tech Army COVID-19 dashboard</h2>
+<p><a href="https://github.com/ThisIsJohnnyLau/social_media">[Files]</a>   <a href="social_media.html">[analysis]</a> Exploratory code, leveraging the power of the Twitter API, for social good.</p>
+<blockquote>
+<p>People all over the world are taking practical steps to protect what they love from climate change before it’s too late. Can we count you in? <strong><a href="https://www.count-us-in.org/project/">- Count Us In Campaign</a> </strong>**<br />
+## Scottish Tech Army COVID-19 dashboard</p>
+</blockquote>
 <p><strong><em>Current</em></strong><br />
 <a href="https://github.com/Scottish-Tech-Army/STACovidDashboard">[Files]</a>   <a href="https://covid19.scottishtecharmy.org">[Dashboard]</a><br />
 This is the current dashboard - an amalgamation of all three projects.</p>
@@ -750,7 +761,7 @@ var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScop
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

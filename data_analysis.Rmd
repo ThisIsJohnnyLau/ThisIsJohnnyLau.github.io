@@ -16,9 +16,14 @@ Here are a few data analysis work examples.
 
 ## Social media analysis
   
+[[Files]](https://github.com/ThisIsJohnnyLau/social_media)
+&nbsp;
 [[analysis]](social_media.html)
+Exploratory code, leveraging the power of the Twitter API, for social good.
 
-
+>People all over the world are taking practical
+steps to protect what they love from climate
+change before it’s too late. Can we count you in? **[- Count Us In Campaign](https://www.count-us-in.org/project/) 
 ****  
 ## Scottish Tech Army COVID-19 dashboard
   

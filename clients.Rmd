@@ -1,0 +1,39 @@
+---
+title: "Consultancy"
+output: 
+  html_document:
+    includes:
+      after_body: footer.html
+---
+
+
+***  
+
+
+
+Organisations that I have worked with:  
+  
+  &nbsp;
+    &nbsp;  
+      &nbsp;  
+
+   [![STA](pics/STA.png){width=90%}](https://www.scottishtecharmy.org/aboutus)  
+
+
+  &nbsp;
+  &nbsp;  
+  &nbsp;  
+    
+    
+[![STA](pics/TEDxGlasgow.png){width=90%}](https://tedxglasgow.com/about)
+
+
+  &nbsp;
+  &nbsp;  
+  &nbsp;  
+  
+     
+  [![STA](pics/winning_scotland.png){width=90%}](http://www.winningscotlandfoundation.org/what-we-do/)  
+    
+
+

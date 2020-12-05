@@ -12,7 +12,10 @@ output:
 
 Investment analysis without a spreadsheet in sight...  
   
-Click on hyperlinks or pics for coding examples. 
+Click on hyperlinks or pics for coding examples.  
+  
+  
+  &nbsp;  
   
 ****  
 # Security analysis
